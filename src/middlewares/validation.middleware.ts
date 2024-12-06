@@ -28,7 +28,6 @@ export const validate = (rules: ValidationRule[]) => {
   };
 };
 
-// Regras de validação comuns
 export const validations = {
   isEmail: (value: any): boolean => {
     if (typeof value !== 'string') return false;

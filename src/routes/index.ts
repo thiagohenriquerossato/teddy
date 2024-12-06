@@ -13,7 +13,6 @@ const urlService = new UrlService();
 const authController = new AuthController(authService);
 const urlController = new UrlController(urlService);
 
-// Auth routes
 router.post(
   '/auth/register',
   validate([
@@ -40,7 +39,6 @@ router.post(
   (req, res) => authController.login(req, res),
 );
 
-// URL routes
 router.get('/urls', authMiddleware, (req, res) => urlController.list(req, res));
 
 router.post(

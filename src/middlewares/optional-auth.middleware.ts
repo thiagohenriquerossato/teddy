@@ -1,8 +1,12 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { AuthenticatedRequest } from './auth.middleware';
 
-export const optionalAuthMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+export const optionalAuthMiddleware = (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
@@ -21,8 +25,8 @@ export const optionalAuthMiddleware = (req: AuthenticatedRequest, res: Response,
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { userId: number };
     req.userId = decoded.userId;
   } catch (err) {
-    // Ignora erros de token inválido
+    return next();
   }
 
   return next();
-}; 
+};

@@ -2,7 +2,6 @@
 import { AuthService } from '../auth.service';
 import { hash } from 'bcrypt';
 
-// Mock do Prisma
 const mockCreate = jest.fn();
 const mockFindUnique = jest.fn();
 
@@ -16,13 +15,11 @@ jest.mock('../../lib/prisma', () => ({
   },
 }));
 
-// Mock do bcrypt
 jest.mock('bcrypt', () => ({
   hash: jest.fn(),
   compare: jest.fn(),
 }));
 
-// Mock do jsonwebtoken
 const mockSign = jest.fn();
 jest.mock('jsonwebtoken', () => ({
   sign: (...args: any[]) => mockSign(...args),

@@ -4,7 +4,6 @@ import { UrlService } from '../../services/url.service';
 import { validate, validations } from '../../middlewares/validation.middleware';
 import { AuthenticatedRequest } from '../../middlewares/auth.middleware';
 
-// Mock nanoid
 jest.mock('nanoid', () => ({
   nanoid: () => 'abc123',
 }));

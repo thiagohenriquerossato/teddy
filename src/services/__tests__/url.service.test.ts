@@ -2,12 +2,10 @@ import { UrlService } from '../url.service';
 import prisma from '../../lib/prisma';
 import { jest, describe, it, expect, beforeEach } from '@jest/globals';
 
-// Mock nanoid
 jest.mock('nanoid', () => ({
   nanoid: () => 'abc123',
 }));
 
-// Mock do prisma
 jest.mock('../../lib/prisma', () => ({
   url: {
     create: jest.fn(),
