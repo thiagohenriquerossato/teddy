@@ -98,5 +98,3 @@ Os testes são configurados usando Jest. Para executar:
 npm run test
 ```
 
-1. Clone o repositório e acesse a pasta
-
