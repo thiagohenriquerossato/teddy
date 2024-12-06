@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      db_dev:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://user:password@db_dev:5432/mydb_dev
+      - JWT_SECRET=seu_segredo_jwt_dev
+      - NODE_ENV=development
+      - PORT=3000
+    command: sh -c "npx prisma generate && npx prisma migrate deploy && npm run dev"
+
+  db_dev:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb_dev
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d mydb_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data_dev:

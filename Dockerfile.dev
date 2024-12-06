@@ -1,0 +1,24 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Instalar dependências do Prisma e PostgreSQL client
+RUN apk add --no-cache postgresql-client
+
+# Copiar apenas os arquivos necessários para instalação
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY prisma ./prisma/
+
+# Instalar dependências
+RUN npm install
+
+# Gerar o Prisma Client
+RUN npx prisma generate
+
+# Copiar o resto dos arquivos
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

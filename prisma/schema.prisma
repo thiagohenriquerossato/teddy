@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  urls      Url[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("users")
+}
+
+model Url {
+  id          Int      @id @default(autoincrement())
+  originalUrl String   @map("original_url")
+  shortCode   String   @unique @map("short_code") @db.VarChar(6)
+  shortUrl    String   @map("short_url")
+  clickCount  Int      @default(0) @map("click_count")
+  userId      Int?     @map("user_id")
+  user        User?    @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  @@map("urls")
+} 
