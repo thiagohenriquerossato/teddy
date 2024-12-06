@@ -1,17 +1,27 @@
-# Teddy API
+# API de Encurtador de URLs - Desafio Técnico Teddy Open Finance
 
-Este projeto é um desafio técnico para a vaga de Desenvolvedor Backend na Teddy Open Finance. A aplicação consiste em uma API REST que gerencia transações financeiras, permitindo a criação, consulta e análise de transações entre contas.
+Este projeto é um desafio técnico para a vaga de Desenvolvedor Backend na Teddy Open Finance. Consiste em uma API de encurtamento de URLs com autenticação de usuários.
 
-## Sobre o Projeto
+## 🚀 Funcionalidades
 
-A API fornece endpoints para:
-- Gerenciamento de contas de usuários
-- Processamento de transações financeiras
-- Consulta de saldo e extrato
-- Histórico de transações
-- Relatórios e análises financeiras
+- Encurtamento de URLs
+- Autenticação de usuários
+- Gerenciamento de URLs encurtadas
+- Redirecionamento de URLs
+- Estatísticas de acesso
 
-## Pré-requisitos
+## 🛠️ Tecnologias Utilizadas
+
+- Node.js
+- TypeScript
+- Express
+- Prisma
+- PostgreSQL
+- Docker
+- Jest (Testes)
+- Swagger (Documentação)
+
+### Rodando com Docker## Pré-requisitos
 
 - Docker e Docker Compose
 - Node.js (versão recomendada: 18 ou superior)
@@ -87,3 +97,6 @@ Os testes são configurados usando Jest. Para executar:
 ```bash
 npm run test
 ```
+
+1. Clone o repositório e acesse a pasta
+
